@@ -9,6 +9,7 @@
     <p>
         <a href="{{ route('bikes.index') }}">Bicicletas</a>
         @auth
+            | <a href="{{ route('bookings.index') }}">Mis reservas</a>
             | {{ Auth::user()->name }}
             <form method="POST" action="{{ route('logout') }}" style="display:inline">
                 @csrf

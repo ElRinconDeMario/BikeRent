@@ -12,4 +12,10 @@ class Bike extends Model
 
     // Campos que se pueden rellenar con create() o update()
     protected $fillable = ['serial_number', 'model', 'price_per_hour', 'status'];
+
+    // Una bici puede tener muchas reservas
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
