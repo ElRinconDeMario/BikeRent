@@ -9,4 +9,7 @@ class Bike extends Model
 {
     /** @use HasFactory<\Database\Factories\BikeFactory> */
     use HasFactory;
+
+    // Campos que se pueden rellenar con create() o update()
+    protected $fillable = ['serial_number', 'model', 'price_per_hour', 'status'];
 }
