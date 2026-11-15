@@ -40,14 +40,13 @@ Route::middleware(['auth'])->group(function () {
 
     // Cancelar una reserva (si el estado lo permite)
     Route::patch('/my-bookings/{booking}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
-});
 
-// Rutas que trae Breeze (dashboard y perfil)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    // El dashboard de Breeze lleva directamente a Mis reservas
+    Route::get('/dashboard', function () {
+        return redirect()->route('bookings.index');
+    })->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+    // Perfil del usuario (viene con Breeze)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

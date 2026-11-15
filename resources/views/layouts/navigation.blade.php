@@ -15,6 +15,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    {{-- Enlaces a las paginas de la app --}}
+                    <x-nav-link :href="route('bikes.index')" :active="request()->routeIs('bikes.*')">
+                        Bicicletas
+                    </x-nav-link>
+                    <x-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
+                        Mis reservas
+                    </x-nav-link>
                 </div>
             </div>
 
