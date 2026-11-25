@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Layout: estructura común (página, cabecera, contenido, pie y rejilla)
+   Enfoque mobile first: la base es móvil y las media queries amplían
+   ========================================================================== */
+
+/* Página a altura completa con el pie siempre abajo */
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Enlace para saltar al contenido, solo visible al recibir el foco */
+.skip-link {
+    position: absolute;
+    top: -3rem;
+    left: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    background-color: var(--color-bg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.skip-link:focus {
+    top: var(--space-3);
+}
+
+/* Contenedor centrado con ancho máximo */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--space-3);
+}
+
+/* Cabecera */
+.header {
+    background-color: var(--color-surface);
+    border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+}
+
+.header__brand {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/* En móvil la navegación ocupa su propia fila, debajo de la marca y el botón de tema */
+.header__nav {
+    order: 3;
+    width: 100%;
+}
+
+.header__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header__link--active {
+    font-weight: 700;
+}
+
+/* Contenido principal */
+.main {
+    flex: 1;
+    padding-block: var(--space-4) var(--space-5);
+}
+
+/* Pie */
+.footer {
+    padding-block: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    background-color: var(--color-surface);
+    border-top: var(--border-width) solid var(--color-border);
+}
+
+.footer__text {
+    margin-block: 0;
+}
+
+/* Rejilla de tarjetas: una columna en móvil */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Bloques apilados con separación (por ejemplo, formularios del perfil) */
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* Desde 40rem: rejilla de dos columnas */
+@media (min-width: 40rem) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+/* Desde 64rem: rejilla de tres columnas y cabecera en una sola fila */
+@media (min-width: 64rem) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .header__nav {
+        order: 0;
+        width: auto;
+    }
+}

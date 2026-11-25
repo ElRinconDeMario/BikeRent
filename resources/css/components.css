@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Componentes: piezas reutilizables con nombres BEM
+   Cada bloque corresponde a un componente de Figma y a un componente Blade
+   ========================================================================== */
+
+/* Botón (<x-button>): enlace o botón con el mismo aspecto */
+.button {
+    display: inline-block;
+    padding: var(--space-2) var(--space-3);
+    font: inherit;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.button--primary {
+    color: var(--color-on-primary);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.button--primary:hover {
+    color: var(--color-on-primary);
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.button--secondary {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    border-color: var(--color-primary);
+}
+
+.button--secondary:hover {
+    color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.button--danger {
+    color: var(--color-on-primary);
+    background-color: var(--color-error);
+    border-color: var(--color-error);
+}
+
+/* Botón con aspecto de enlace (cerrar sesión, reenviar email) */
+.link-button {
+    padding: 0;
+    font: inherit;
+    color: var(--color-primary);
+    text-decoration: underline;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Campo de formulario (<x-field>) */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.field__label {
+    font-weight: 700;
+}
+
+.field__input {
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    font: inherit;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.field__input--invalid {
+    border: 2px solid var(--color-error);
+}
+
+.field__error {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+}
+
+/* Casilla de verificación con su texto */
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.checkbox__input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+    accent-color: var(--color-primary);
+}
+
+/* Formulario: tarjeta con los campos apilados */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 30rem;
+    padding: var(--space-4);
+    background-color: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.form__title {
+    margin: 0;
+}
+
+.form__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.form__note {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+/* Tarjeta (<x-bike-card>, <x-booking-card> y vistas de detalle) */
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    height: 100%;
+    padding: var(--space-3);
+    background-color: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.card--detail {
+    max-width: 40rem;
+    padding: var(--space-4);
+}
+
+.card__title {
+    margin: 0;
+}
+
+/* Lista de datos: término a la izquierda y valor a la derecha (<x-data-item>) */
+.card__data {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2) var(--space-3);
+    margin: 0;
+}
+
+.card__term {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.card__value {
+    margin: 0;
+    text-align: right;
+}
+
+/* Las acciones quedan abajo aunque las tarjetas tengan alturas distintas */
+.card__actions {
+    margin-top: auto;
+}
+
+.card__note {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+/* Estado de bicicletas y reservas (<x-status>) */
+.status {
+    display: inline-block;
+    padding: 0 var(--space-2);
+    font-size: var(--font-size-sm);
+    border: var(--border-width) solid currentColor;
+    border-radius: 999px;
+}
+
+.status--positive {
+    color: var(--color-success);
+    background-color: var(--color-success-bg);
+}
+
+.status--neutral {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+}
+
+.status--negative {
+    color: var(--color-error);
+    background-color: var(--color-error-bg);
+}
+
+/* Aviso de éxito o error (<x-alert>) */
+.alert {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    border: var(--border-width) solid currentColor;
+    border-radius: var(--radius);
+}
+
+.alert--success {
+    color: var(--color-success);
+    background-color: var(--color-success-bg);
+}
+
+.alert--error {
+    color: var(--color-error);
+    background-color: var(--color-error-bg);
+}
+
+/* Filtro del catálogo */
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.filter__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    max-width: 20rem;
+}
+
+.filter__label {
+    font-weight: 700;
+}
+
+.filter__select {
+    padding: var(--space-2) var(--space-3);
+    font: inherit;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.filter__status {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.filter__empty {
+    color: var(--color-text-muted);
+}
+
+/* Desde 40rem el filtro y su contador van en la misma fila */
+@media (min-width: 40rem) {
+    .filter {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: var(--space-4);
+    }
+
+    .filter__field {
+        flex: 1 1 20rem;
+    }
+}
