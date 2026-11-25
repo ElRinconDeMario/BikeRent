@@ -1,18 +1,22 @@
-@extends('layouts.basic')
+<x-layout :title="$bike->model">
+    <p><a href="{{ route('bikes.index') }}">Volver al catálogo</a></p>
 
-@section('content')
-    <h1>{{ $bike->model }}</h1>
+    <article class="card card--detail">
+        <h1 class="card__title">{{ $bike->model }}</h1>
 
-    <p>Nº de serie: {{ $bike->serial_number }}</p>
-    <p>Precio por hora: {{ $bike->price_per_hour }} €</p>
-    <p>Estado: {{ $bike->status }}</p>
+        <dl class="card__data">
+            <x-data-item term="Nº de serie">{{ $bike->serial_number }}</x-data-item>
+            <x-data-item term="Precio por hora">{{ $bike->price_per_hour }} €</x-data-item>
+            <x-data-item term="Estado"><x-status :status="$bike->status" /></x-data-item>
+        </dl>
 
-    {{-- Solo se puede reservar si esta disponible; sin sesion, el middleware auth manda al login --}}
-    @if ($bike->status === 'available')
-        <a href="{{ route('bookings.create', $bike) }}">Reservar</a>
-    @else
-        <p>Esta bicicleta no está disponible.</p>
-    @endif
-
-    <p><a href="{{ route('bikes.index') }}">Volver</a></p>
-@endsection
+        {{-- Solo se puede reservar si está disponible; sin sesión, el middleware auth manda al login --}}
+        <div class="card__actions">
+            @if ($bike->status === 'available')
+                <x-button :href="route('bookings.create', $bike)">Reservar</x-button>
+            @else
+                <p class="card__note">Esta bicicleta no está disponible para reservar.</p>
+            @endif
+        </div>
+    </article>
+</x-layout>
