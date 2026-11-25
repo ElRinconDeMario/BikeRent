@@ -1,27 +1,16 @@
-@extends('layouts.basic')
+<x-layout title="Catálogo">
+    <h1>Catálogo de bicicletas</h1>
 
-@section('content')
-    <h1>Bicicletas</h1>
-
-    {{-- Tabla con todas las bicis del catalogo --}}
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>Modelo</th>
-            <th>Nº de serie</th>
-            <th>Precio/hora</th>
-            <th>Estado</th>
-            <th></th>
-        </tr>
-        @forelse ($bikes as $bike)
-            <tr>
-                <td>{{ $bike->model }}</td>
-                <td>{{ $bike->serial_number }}</td>
-                <td>{{ $bike->price_per_hour }} €</td>
-                <td>{{ $bike->status }}</td>
-                <td><a href="{{ route('bikes.show', $bike) }}">Ver</a></td>
-            </tr>
-        @empty
-            <tr><td colspan="5">No hay bicicletas.</td></tr>
-        @endforelse
-    </table>
-@endsection
+    @if ($bikes->isEmpty())
+        <p>No hay bicicletas en el catálogo.</p>
+    @else
+        {{-- Rejilla de tarjetas: 1, 2 o 3 columnas según el ancho de pantalla --}}
+        <ul class="grid">
+            @foreach ($bikes as $bike)
+                <li>
+                    <x-bike-card :bike="$bike" />
+                </li>
+            @endforeach
+        </ul>
+    @endif
+</x-layout>

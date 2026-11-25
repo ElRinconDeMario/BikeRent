@@ -1,3 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Punto de entrada de los estilos: Vite lo carga desde el layout con @vite */
+@import './base.css';
+@import './layout.css';
+@import './components.css';
