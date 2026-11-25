@@ -6,11 +6,12 @@ use App\Models\Bike;
 
 class BikeController extends Controller
 {
-    // Catalogo publico con todas las bicis
+    // Catalogo publico con todas las bicis y la lista de tipos para el filtro
     public function index()
     {
         $bikes = Bike::orderBy('model')->get();
-        return view('bikes.index', compact('bikes'));
+        $models = $bikes->pluck('model')->unique()->values();
+        return view('bikes.index', compact('bikes', 'models'));
     }
 
     // Detalle de una bici concreta

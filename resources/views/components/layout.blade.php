@@ -37,6 +37,8 @@
                     @endauth
                 </ul>
             </nav>
+
+            <x-theme-toggle />
         </div>
     </header>
 
